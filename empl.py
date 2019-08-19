@@ -1,22 +1,14 @@
-def search(idx, emp, low, high):
-    if low == high:
-        return -1
-    mid = (high - low) // 2
-    if emp[mid] = idx:
-        return mid
-    else:
-        if emp[mid] < idx:
-            return search(idx, emp, mid, high)
-        else: return search(idx, emp, low, mid)
-    
-def getImp(employees, id):
-    employees.sort(lambda x: x.id, reversed = False)
+def getImp(employees, idx):
+    empDict = {emp.id: emp for emp in employees}
+    stack = [idx]
     seen = []
-    toVisit = [id]
-    ans = 0
-    while toVisit:
-        nextId = toVisit.pop(0)
-        if nextId in seen:
-            continue
-        else:
+    imp = 0
+    while stack:
+        nextId = stack.pop()
+        if nextId not in seen:
             seen.append(nextId)
+            nextEmp = empDict[nextId]
+            imp += nextEmp.importance
+            stack.extend(nextEmp.subordinates)
+    return imp
+        

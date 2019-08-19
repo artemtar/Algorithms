@@ -22,13 +22,13 @@ def findAna(s, p):
                 break
             else:
                 pDicCopy[s[j]] -= 1
-        flag = True
-        for e in pDicCopy.values():
-            if e != 0:
-                flag = False
-                break
-        if flag:
-            answer.append(i)
+        for k in range(j, sizeS):
+            flag = True
+            for e in pDicCopy.values:
+                if e != 0:
+                    flag = False
+            if flag:
+                answer.append(i)
 
         pDicCopy = pDic.copy()
     return answer
